@@ -16,13 +16,30 @@
                         <q-icon name="visibility" color="gray" />
                     </template>
                 </q-input>
+                <q-checkbox v-model="remindMe" label="Remind me" color="black"/>
                 <div class="row justify-end">
-                    <q-btn label="Login" class="bg-white text-black" rounded></q-btn>
+                    <q-btn label="Login" class="bg-white text-black btn" rounded></q-btn>
                 </div>
+                <p class="text-center text-h6">Forgot Password? <a href="#" class="text-white">Click here!</a></p>
+                
             </div>
         </div>
     </div>
 </template>
+
+
+<script>
+import { ref } from 'vue';
+
+    export default {
+        setup(){
+            const remindMe = ref(false)
+
+            return {remindMe}
+        }
+    }
+
+</script>
 
 <style scoped>
 
@@ -32,7 +49,9 @@
 
 .login-form-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .login-form {
@@ -46,6 +65,10 @@
 
 .login-card {
     max-width: 500px;
+}
+
+.btn {
+    min-width: 100px;
 }
 
 </style>
