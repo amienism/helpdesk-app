@@ -21,9 +21,46 @@
                     </q-input>
                 </div>
                 <div class="col row justify-end items-center q-gutter-md">
-                    <q-icon name="translate" color="gray" size="24px"/>
+                    <q-icon name="translate" color="gray" size="24px">
+                        <q-menu>
+                            <q-list style="min-width: 200px" dense>
+                                <q-item clickable v-close-popup>
+                                    <q-item-section>
+                                        <div class="row items-center q-gutter-sm">
+                                            <q-icon>
+                                                <img src="../assets/icon/indonesia-flag.png" alt="">
+                                            </q-icon>
+                                            <span>Indonesia</span>
+                                        </div>
+                                    </q-item-section>
+                                </q-item>
+                                <q-item clickable v-close-popup>
+                                    <q-item-section>
+                                        <div class="row items-center q-gutter-sm">
+                                            <q-icon>
+                                                <img src="../assets/icon/usa-flag.png" alt="">
+                                            </q-icon>
+                                            <span>English</span>
+                                        </div>
+                                    </q-item-section>
+                                </q-item>
+                            </q-list>
+                        </q-menu>
+                    </q-icon>
                     <q-avatar size="2rem">
                         <img src="https://cdn.quasar.dev/img/avatar.png">
+                        <q-menu>
+                            <q-list style="min-width: 100px" dense>
+                                <q-item clickable v-close-popup>
+                                    <q-item-section>Profile</q-item-section>
+                                </q-item>
+                                <q-separator />
+                                <q-item clickable v-close-popup>
+                                    <q-item-section>Logout</q-item-section>
+                                </q-item>
+                            </q-list>
+                        </q-menu>
+
                     </q-avatar>
                 </div>
             </div>
@@ -91,12 +128,12 @@
 import { ref } from 'vue'
 
 export default {
-  setup () {
-    return {
-      drawer: ref(false),
-      miniState: ref(true)
+    setup() {
+        return {
+            drawer: ref(false),
+            miniState: ref(true)
+        }
     }
-  }
 }
 </script>
 

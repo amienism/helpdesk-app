@@ -4,17 +4,19 @@
         <h5 class="q-pa-none q-ma-none">How can we help you today?</h5>
         <div class="row q-gutter-md">
             <div>
-                <q-card class="my-card text-white">
-                    <q-card-section class="text-center">
-                        <q-icon name="report" size="6rem"></q-icon>
-                    </q-card-section>
-    
-                    <q-card-section>
-                        <div class="main-menu-title">
-                            Submit Issue
-                        </div>
-                    </q-card-section>
-                </q-card>
+                <router-link to="/app/submit-issue">
+                    <q-card class="my-card text-white">
+                        <q-card-section class="text-center">
+                            <q-icon name="report" size="6rem"></q-icon>
+                        </q-card-section>
+        
+                        <q-card-section>
+                            <div class="main-menu-title">
+                                Submit issue
+                            </div>
+                        </q-card-section>
+                    </q-card>
+                </router-link>
             </div>
             <div>
                 <q-card class="my-card text-white">
@@ -49,6 +51,10 @@
 </template>
 
 <style scoped>
+    a {
+        text-decoration: none;
+    }
+
     .main-menu-wrapper {
         min-height: 87vh;
     }
