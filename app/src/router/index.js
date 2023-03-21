@@ -1,10 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import appRouter from './app'
 import authRouter from './auth'
+import adminRouter from './admin'
 
 const routes = [
+  {
+    path: '/',
+    redirect: '/auth/login'
+  },
   ...appRouter,
-  ...authRouter
+  ...authRouter,
+  ...adminRouter
 ]
 
 
@@ -16,5 +22,7 @@ const router = createRouter({
     return { top: 0 }
   },
 })
+
+
 
 export default router;

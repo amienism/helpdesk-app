@@ -1,148 +1,73 @@
 <template>
     <q-layout view="hHh lpR fFf">
 
-        <q-header bordered class="bg-primary text-white q-px-xl">
-            <div class="row justify-between items-center">
-                <div class="col">
-                    <q-toolbar>
-                        <q-toolbar-title>
-                            <q-avatar square>
-                                <img src="../assets/icon/helpdesk.png">
-                            </q-avatar>
-                            Helpdesk
-                        </q-toolbar-title>
-                    </q-toolbar>
-                </div>
-                <div class="col">
-                    <q-input rounded outlined v-model="text" placeholder="Search" bg-color="white" dense color="black">
-                        <template v-slot:append>
-                            <q-icon name="search" color="gray" />
-                        </template>
-                    </q-input>
-                </div>
-                <div class="col row justify-end items-center q-gutter-md">
-                    <q-icon name="translate" color="gray" size="24px">
-                        <q-menu>
-                            <q-list style="min-width: 200px" dense>
-                                <q-item clickable v-close-popup>
-                                    <q-item-section>
-                                        <div class="row items-center q-gutter-sm">
-                                            <q-icon>
-                                                <img src="../assets/icon/indonesia-flag.png" alt="">
-                                            </q-icon>
-                                            <span>Indonesia</span>
-                                        </div>
-                                    </q-item-section>
-                                </q-item>
-                                <q-item clickable v-close-popup>
-                                    <q-item-section>
-                                        <div class="row items-center q-gutter-sm">
-                                            <q-icon>
-                                                <img src="../assets/icon/usa-flag.png" alt="">
-                                            </q-icon>
-                                            <span>English</span>
-                                        </div>
-                                    </q-item-section>
-                                </q-item>
-                            </q-list>
-                        </q-menu>
-                    </q-icon>
-                    <q-avatar size="2rem">
-                        <img src="https://cdn.quasar.dev/img/avatar.png">
-                        <q-menu>
-                            <q-list style="min-width: 100px" dense>
-                                <q-item clickable v-close-popup>
-                                    <q-item-section>Profile</q-item-section>
-                                </q-item>
-                                <q-separator />
-                                <q-item clickable v-close-popup>
-                                    <q-item-section>Logout</q-item-section>
-                                </q-item>
-                            </q-list>
-                        </q-menu>
+        <appbar />
 
-                    </q-avatar>
-                </div>
-            </div>
-        </q-header>
-
-        <!-- <q-drawer v-model="drawer" show-if-above :mini="miniState" @mouseover="miniState = false"
-            @mouseout="miniState = true" mini-to-overlay :width="200" :breakpoint="500" bordered class="bg-grey-1">
-            <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
-                <q-list padding>
-                    <q-item clickable v-ripple>
-                        <q-item-section avatar>
-                            <q-icon name="dashboard" />
-                        </q-item-section>
-
-                        <q-item-section>
-                            Dashboard
-                        </q-item-section>
-                    </q-item>
-
-                    <q-item active clickable v-ripple>
-                        <q-item-section avatar>
-                            <q-icon name="confirmation_number" />
-                        </q-item-section>
-
-                        <q-item-section>
-                            Ticket
-                        </q-item-section>
-                    </q-item>
-
-                    <q-item clickable v-ripple>
-                        <q-item-section avatar>
-                            <q-icon name="send" />
-                        </q-item-section>
-
-                        <q-item-section>
-                            Send
-                        </q-item-section>
-                    </q-item>
-
-                    <q-separator />
-
-                    <q-item clickable v-ripple>
-                        <q-item-section avatar>
-                            <q-icon name="drafts" />
-                        </q-item-section>
-
-                        <q-item-section>
-                            Drafts
-                        </q-item-section>
-                    </q-item>
-                </q-list>
-            </q-scroll-area>
-        </q-drawer> -->
+        <!-- Sidebar Component  -->
+        <sidebar />
 
         <q-page-container>
-            <q-page padding>
+            <q-list dense class="row q-px-xl q-py-sm">
+                <template v-for="(route, index) in $router.options.routes.filter(x=>x.path==$route.matched[0].path)">
+                    <template v-for="child in route.children">
+                        <q-item clickable v-ripple :to="route.path+'/'+child.path">
+                            <q-item-section >
+                                {{ child.name }}
+                            </q-item-section>
+                        </q-item>
+                        <q-separator vertical></q-separator>
+                    </template>
+                </template>
+            </q-list>
+            <div class="q-pa-md">
                 <router-view />
-            </q-page>
+            </div>
         </q-page-container>
 
     </q-layout>
 </template>
 
 <script>
-import { ref } from 'vue'
+    import sidebar from '../components/sidebar.vue'
+    import appbar from '../components/appbar.vue'
 
-export default {
-    setup() {
-        return {
-            drawer: ref(false),
-            miniState: ref(true)
+    export default {
+        data() {
+            return {
+                children: []
+            }
+        },
+        components: {
+            sidebar,
+            appbar
+        },
+        watch: {
+            $route: function (current) {
+
+                const route = this.$router.options.routes.find(route => route.path === current.path)
+                console.log(this.$router.options.routes)
+                if (route && Array.isArray(route.children)) {
+                    this.children = route.children
+                } else if (route) {
+                    this.children = []
+                }
+            }
         }
     }
-}
 </script>
 
 <style scoped>
-.q-page {
-    position: relative;
-}
+    .q-page {
+        position: relative;
+    }
 
-.body {
-    background-color: #efefef;
-}
+    .body {
+        background-color: #efefef;
+    }
+
+    .q-item {
+        font-weight: 400;
+        text-shadow: 0px 0px 1px black;
+    }
+    
 </style>

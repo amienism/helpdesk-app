@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 /app/node_modules
 /app/.vscode
+/api/node_modules
 
 
 node_modules

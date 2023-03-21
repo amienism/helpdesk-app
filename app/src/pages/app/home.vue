@@ -19,30 +19,34 @@
                 </router-link>
             </div>
             <div>
-                <q-card class="my-card text-white">
-                    <q-card-section class="text-center">
-                        <q-icon name="confirmation_number" size="6rem"></q-icon>
-                    </q-card-section>
-    
-                    <q-card-section>
-                        <div class="main-menu-title">
-                            My Ticket
-                        </div>
-                    </q-card-section>
-                </q-card>
+                <router-link to="/app/my-ticket">
+                    <q-card class="my-card text-white">
+                        <q-card-section class="text-center">
+                            <q-icon name="confirmation_number" size="6rem"></q-icon>
+                        </q-card-section>
+        
+                        <q-card-section>
+                            <div class="main-menu-title">
+                                My Ticket
+                            </div>
+                        </q-card-section>
+                    </q-card>
+                </router-link>
             </div>
             <div>
-                <q-card class="my-card text-white">
-                    <q-card-section class="text-center">
-                        <q-icon name="contact_support" size="6rem"></q-icon>
-                    </q-card-section>
-    
-                    <q-card-section>
-                        <div class="main-menu-title">
-                            Contact Us
-                        </div>
-                    </q-card-section>
-                </q-card>
+                <router-link to="/app/contact">
+                    <q-card class="my-card text-white">
+                        <q-card-section class="text-center">
+                            <q-icon name="contact_support" size="6rem"></q-icon>
+                        </q-card-section>
+        
+                        <q-card-section>
+                            <div class="main-menu-title">
+                                Contact Us
+                            </div>
+                        </q-card-section>
+                    </q-card>
+                </router-link>
             </div>
         </div>
         
@@ -55,9 +59,9 @@
         text-decoration: none;
     }
 
-    .main-menu-wrapper {
-        min-height: 87vh;
-    }
+    /* .main-menu-wrapper {
+        min-height: 85vh;
+    } */
 
     .main-menu-title {
         color: white;
