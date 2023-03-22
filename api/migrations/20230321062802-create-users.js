@@ -12,6 +12,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      name: {
+        type: Sequelize.STRING
+      },
       password: {
         type: Sequelize.STRING
       },
@@ -21,6 +24,9 @@ module.exports = {
       status: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
+      },
+      verification_token: {
+        type: Sequelize.STRING,
       },
       created_at: {
         allowNull: false,

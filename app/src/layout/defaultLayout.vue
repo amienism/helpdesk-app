@@ -7,7 +7,7 @@
         <sidebar />
 
         <q-page-container>
-            <q-list dense class="row q-px-xl q-py-sm">
+            <q-list dense class="row q-px-xl q-py-sm shadow-1">
                 <template v-for="(route, index) in $router.options.routes.filter(x=>x.path==$route.matched[0].path)">
                     <template v-for="child in route.children">
                         <q-item clickable v-ripple :to="route.path+'/'+child.path">
