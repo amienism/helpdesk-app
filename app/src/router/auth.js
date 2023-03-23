@@ -11,6 +11,10 @@ export default [
         path: "register",
         component: () => import("../pages/auth/register.vue"),
       },
+      {
+        path: "forget-password",
+        component: () => import("../pages/auth/forget_password.vue"),
+      },
     ],
   },
   {

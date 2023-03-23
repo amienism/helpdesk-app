@@ -17,6 +17,7 @@ module.exports = {
          email: 'admin@admin.com',
          password: '$2a$10$Kj.AWa.pfdtN6ZNLuMMkMuQasaOY3/pBvd0ZrwJEhROfhoF4YQq.2',
          role: 1,
+         status: 1,
          created_at: new Date(),
          updated_at: new Date(),
        }], {});

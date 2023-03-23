@@ -29,7 +29,7 @@
             </template>
         </q-input>
         <div class="row justify-between items-center q-gutter-sm">
-            <span>Already have account? <router-link to="/auth/login">Click here to login.</router-link></span>
+            <span>Already have account? <router-link to="/auth/login" class="text-bold text-secondary">Click here to login.</router-link></span>
             <q-btn label="Register" class="bg-secondary text-black btn" :loading="submitLoading" rounded type="submit"></q-btn>
         </div>
     </form>
@@ -49,6 +49,7 @@ export default {
         const submitLoading = ref(false)
         
         const handleRegister = async () => {
+            alert.value = false;
             errorInput.value = {}
             submitLoading.value = true;
             try {

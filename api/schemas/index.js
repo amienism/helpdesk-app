@@ -11,5 +11,8 @@ module.exports = {
     login: joi.object({
         email: joi.string().email().required(),
         password: joi.string().required(),
+    }),
+    changePassword: joi.object({
+        email: joi.string().email().required().messages({'any.required': "Please fill email field", 'string.empty': "Pelase fill email field"}),
     })
 }

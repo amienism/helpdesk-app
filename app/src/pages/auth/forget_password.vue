@@ -4,57 +4,44 @@
         {{alertMsg}}
     </q-banner>
     </transition>
-    <form action="" class="form-login" @submit.prevent="handleLogin">
-        <h4 class="q-pa-none q-ma-none"><b>Login</b></h4>
+    <form action="" class="form-login" @submit.prevent="handleChangePassword">
+        <h4 class="q-pa-none q-ma-none"><b>Change Password</b></h4>
         <q-input type="email" rounded outlined v-model="formData.email" placeholder="Email" bg-color="white" :error="errorInput.email ? true : undefined" :error-message="errorInput.email">
             <template v-slot:prepend>
                 <q-icon name="person" color="gray" />
             </template>
         </q-input>
-        <q-input type="password" rounded outlined v-model="formData.password" placeholder="Password" bg-color="white" :error="errorInput.password ? true : undefined" :error-message="errorInput.password">
-            <template v-slot:prepend>
-                <q-icon name="visibility" color="gray" />
-            </template>
-        </q-input>
-        
-        <q-checkbox v-model="remindMe" label="Remind me" color="black" />
-        <div class="row justify-end q-gutter-sm">
-            <q-btn label="Register" class="bg-white text-black btn" rounded to="/auth/register"></q-btn>
-            <q-btn label="Login" class="bg-secondary text-black btn" rounded type="submit" :loading="submitLoading"></q-btn>
+        <div class="row justify-between items-center q-gutter-sm">
+            <span>Already have account? <router-link to="/auth/login" class="text-bold text-secondary">Click here to login.</router-link></span>
+            <q-btn label="Submit" class="bg-secondary text-black btn" rounded type="submit" :loading="submitLoading"></q-btn>
         </div>
     </form>
-    <p class="text-center text-body">Forget Password? <router-link to="/auth/forget-password" class="text-positive text-weight-bold">Click here!</router-link></p>
 </template>
 
 <script>
 import axios from 'axios';
 import { ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 
 export default {
     setup(){
-        const router = useRouter();
-
         const formData = ref({})
         const submitLoading = ref(false)
         const alert = ref(false)
         const alertMsg = ref('')
         const alertClass = ref('')
         const errorInput = ref({})
-        const remindMe = ref(false)
 
-        const handleLogin = async () => {
+        const handleChangePassword = async () => {
             alert.value = false;
             errorInput.value = {};
             submitLoading.value = true;
             try {
-                const {data: {messages, data: {token}}} = await axios.post('/auth/login', formData.value)
-                localStorage.setItem("jwt_token", token)
+                const {data: {messages, data: {token}}} = await axios.post('/auth/change-password', formData.value)
                 alertMsg.value = messages;
                 alertClass.value = 'bg-positive text-white';
                 alert.value = true;
                 submitLoading.value = false;
-                router.push('/app/home')
+                formData.value = {};
             } catch ({response: {data: {messages, data}}}) {
                 errorInput.value = data;
                 alertMsg.value = messages;
@@ -66,13 +53,12 @@ export default {
 
         return {
             formData,
-            handleLogin,
+            handleChangePassword,
             submitLoading,
             alert,
             alertClass,
             alertMsg,
             errorInput,
-            remindMe
         }
     }
 }

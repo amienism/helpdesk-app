@@ -1,7 +1,7 @@
 <template>
     <div class="row login-page-wrapper">
         <div class="col q-my-auto">
-            <q-img src="../assets/image/helpdesk-illustration.jpg"></q-img>
+            <q-img src="../assets/image/helpdesk-illustration.png"></q-img>
         </div>
         <div class="col bg-primary login-form-wrapper">
             <div class="text-white login-form">
