@@ -72,7 +72,7 @@ router.post('/register', request_validation(register, 'body'),  async (req, res,
       });
 
       await t.commit();
-      res.status(200).json(rest_ok("Succesfully register your email, please check your email for confirmation.", user))
+      res.status(200).json(rest_ok("Register email success, please check your email for confirmation.", user))
     } catch (error) {
       await t.rollback();
       res.status(400).json(rest_error(error, {}))
@@ -80,6 +80,16 @@ router.post('/register', request_validation(register, 'body'),  async (req, res,
 })
 
 router.get('/verification/:token', async (req, res, next) => {
+  /*
+  Create trigger before update on users table
+  BEGIN
+    IF OLD.status < NEW.status THEN
+      SET NEW.verification_token = NULL;
+    END IF;
+  END
+  */
+
+
   const t = await model.sequelize.transaction();
 
   try {

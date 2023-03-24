@@ -32,7 +32,26 @@ myApp.use(Quasar, {
   }
 })
 
-axios.defaults.baseURL = 'http://127.0.0.1:3000'
+axios.defaults.baseURL = 'http://127.0.0.1:3000';
+axios.defaults.headers.common = {
+  Accept: "application/json",
+};
+
+axios.interceptors.request.use(
+  (config) => {
+      const token = localStorage.getItem("jwt_token");
+
+      if (token) {
+          config.headers["Authorization"] = `Bearer ${token}`;
+      }
+
+      return config;
+  },
+
+  (error) => {
+      return Promise.reject(error);
+  }
+);
 
 // Assumes you have a <div id="app"></div> in your index.html
 myApp.mount('#app')

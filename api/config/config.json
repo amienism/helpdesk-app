@@ -5,7 +5,14 @@
     "database": "db_helpdesk",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": "3307"
+    "port": "3307",
+    "define": {
+      "timestamps": true,
+      "underscored": true,
+      "underscoredAll": true,
+      "createdAt": "created_at",
+      "updatedAt": "updated_at"
+    }
   },
   "test": {
     "username": "root",

@@ -14,5 +14,8 @@ module.exports = {
     }),
     changePassword: joi.object({
         email: joi.string().email().required().messages({'any.required': "Please fill email field", 'string.empty': "Pelase fill email field"}),
+    }),
+    issueType: joi.object({
+        type_name: joi.string().required().messages({'any.required': "Please fill issue type name field", 'string.empty': "Please fill issue type name field"})
     })
 }

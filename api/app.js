@@ -7,6 +7,7 @@ var cors = require('cors')
 require('dotenv').config()
 
 var authRouter = require('./routes/auth');
+var issueTypeRouter = require('./routes/issue_type')
 
 var app = express();
 
@@ -18,5 +19,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/auth', authRouter);
+app.use('/issue-type', issueTypeRouter);
 
 module.exports = app;
